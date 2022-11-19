@@ -42,6 +42,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.file.Files;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -61,7 +62,7 @@ public class test_DoctypeInputStream extends AbstractDoctypeTests {
 
     private FileInputStream testDocument(String content)
         throws IOException {
-        testFile = File.createTempFile("xmlunit_", ".xml");
+        testFile = Files.createTempFile("xmlunit_", ".xml").toFile();
         FileOutputStream fos = new FileOutputStream(testFile);
         OutputStreamWriter w = new OutputStreamWriter(fos, "ISO-8859-1");
         w.write(content);

@@ -40,6 +40,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Reader;
+import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.Set;
 import javax.xml.transform.dom.DOMSource;
@@ -226,7 +227,7 @@ public class test_Diff extends TestCase{
         assertTrue("similar. " + diff.toString(), diff.similar());
         assertTrue("not identical. " + diff.toString(), !diff.identical());
         
-        File tempDtdFile = File.createTempFile(getName(), "dtd");
+        File tempDtdFile = Files.createTempFile(getName(), "dtd").toFile();
         tempDtdFile.deleteOnExit();
         FileWriter dtdWriter = new FileWriter(tempDtdFile);
         dtdWriter.write(aDTD);

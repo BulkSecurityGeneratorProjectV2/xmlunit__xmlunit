@@ -39,6 +39,7 @@ package org.custommonkey.xmlunit;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -191,13 +192,13 @@ public class test_DifferenceEngine extends TestCase implements DifferenceConstan
     }
 
     public void testCompareDocumentType() throws Exception {
-        File tmpFile = File.createTempFile("Roses","dtd");
+        File tmpFile = Files.createTempFile("Roses", "dtd").toFile();
         tmpFile.deleteOnExit();
         String tmpDTD = "<!ELEMENT leaf (#PCDATA)><!ELEMENT root (leaf)>";
         new FileWriter(tmpFile).write(tmpDTD);
         String rosesDTD = tmpFile.toURL().toExternalForm();
 
-        File altTmpFile = File.createTempFile("TheCrows", "dtd");
+        File altTmpFile = Files.createTempFile("TheCrows", "dtd").toFile();
         altTmpFile.deleteOnExit();
         new FileWriter(altTmpFile).write(tmpDTD);
         String theCrowsDTD = altTmpFile.toURL().toExternalForm();

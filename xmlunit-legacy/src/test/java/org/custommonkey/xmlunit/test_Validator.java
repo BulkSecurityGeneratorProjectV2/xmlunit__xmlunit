@@ -47,6 +47,7 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import java.io.StringReader;
+import java.nio.file.Files;
 
 /**
  * JUnit test for Validator
@@ -193,7 +194,7 @@ public class test_Validator extends XMLTestCase {
     }
 
     public void setUp() throws Exception {
-        tempDTDFile = File.createTempFile("cartoon", "dtd");
+        tempDTDFile = Files.createTempFile("cartoon", "dtd").toFile();
         removeTempDTDFile();
     }
 

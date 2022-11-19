@@ -37,6 +37,7 @@ POSSIBILITY OF SUCH DAMAGE.
 package org.custommonkey.xmlunit;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import junit.framework.TestCase;
 
@@ -122,7 +123,7 @@ public class test_NodeDescriptor extends TestCase {
     }
 
     public void testAppendDocTypeDetail() throws Exception {
-        File dtdA = File.createTempFile(getName() + "A", "dtd");
+        File dtdA = Files.createTempFile(getName() + "A", "dtd").toFile();
         dtdA.deleteOnExit();
         String systemOnlyDTD = "<!DOCTYPE blah SYSTEM \"" + dtdA.toURL().toExternalForm() + "\">";
         String someContent = "<blah>ignored</blah>";
@@ -135,7 +136,7 @@ public class test_NodeDescriptor extends TestCase {
         assertEquals(systemOnlyDTD + " at /", stringBuffer.toString());
 
         stringBuffer = new StringBuffer();
-        File dtdB = File.createTempFile(getName() + "B", "dtd");
+        File dtdB = Files.createTempFile(getName() + "B", "dtd").toFile();
         dtdB.deleteOnExit();
         String publicDTD = "<!DOCTYPE web-app "
             + "PUBLIC \"-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN\" "
